@@ -1,0 +1,8 @@
+anytree
+beautifulsoup4
+cartopy
+geopy
+matplotlib
+numpy
+scikit-learn
+scipy
