@@ -1,6 +1,6 @@
 # Automatically Identifying Language Family from Acoustic Examples in Low Resource Scenarios
 
-Code for respective [paper](http://www.cs.cmu.edu/~peterw1/website_files/multilingual.pdf).
+Code for respective [paper](https://arxiv.org/pdf/2012.00876).
 
 ## Background
 
