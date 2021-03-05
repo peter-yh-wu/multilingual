@@ -26,14 +26,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--verbose', action='store_true', help='one-time computations')
     parser.add_argument('-p', '--path', default='embs.npy', type=str, help='path to language embeddings')
+    parser.add_argument('-r', '--radius', default=500, type=int, help='radius')
     args = parser.parse_args()
 
     embs = np.load(args.path)
     if not os.path.exists('../outputs'):
         os.makedirs('../outputs')
-
-    # only considering languages relatively close to current language (e.g. not cross-continent)
-    radius = 500
 
     # for each k, we return fraction of languages that have a top k embedding distance
     # neighbor that's in the family/tree
@@ -76,7 +74,7 @@ def main():
     metrics['correlation_mean'] = correlation_mean
     metrics['correlation_std'] = correlation_std
 
-    idxs_under_threshold = [[i for i, d in enumerate(ds) if d < radius] for ds in dists_km]
+    idxs_under_threshold = [[i for i, d in enumerate(ds) if d < args.radius] for ds in dists_km]
         # row i has the languages < 500 km of lang i
     dists_km_subsets = [[ds[i] for i in idxs] for idxs, ds in zip(idxs_under_threshold, dists_km)]
     emb_dists_subsets = [[ds[i] for i in idxs] for idxs, ds in zip(idxs_under_threshold, emb_dists)]
